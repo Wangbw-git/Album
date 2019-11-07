@@ -1,0 +1,6 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+    {{ info }}
+    <a href="{% url 'albums' 1 %}">返回浏览界面</a>
+{% endblock %}

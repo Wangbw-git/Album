@@ -1,0 +1,29 @@
+{% extends "myapp/base.html" %}
+{% block title %}
+    编辑图片
+{% endblock %}
+{% block content %}
+    <form method="post" action="{%url 'update'%}"   enctype="multipart/form-data">
+	{%csrf_token%}
+		<input type="hidden" name="id" value="{{photo.id}}">
+		<table width="200">
+			<tr>
+				<td>标题:</td>
+				<td><input type="text" name="title" value="{{photo.title}}" /></td>
+			</tr>
+			<tr>
+				<td>相片:</td>
+				<td  align="center"><input type="file" name="pic"  /></td>
+        	</tr>
+        	<tr>
+        		<td colspan="2" align="center">
+					<input type="submit" value="修改">
+					<input type="reset" name="重置">
+        		</td>
+        	</tr>
+        	<tr>
+			 <td colspan="2" align="center"><img src="/static/pics/s_{{photo.name}}"></td>
+        	</tr>
+		</table>
+    </form>
+{% endblock %}

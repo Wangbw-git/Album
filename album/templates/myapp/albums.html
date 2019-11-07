@@ -1,0 +1,43 @@
+{% extends "myapp/base.html" %}
+<!--js弹框实现-->
+<script type="text/javascript">
+    function Del(url){
+        if (confirm("确定是否删除？")){
+            windows.location = url
+        }
+    }
+</script>
+{% block title %}
+    相册浏览
+{% endblock %}
+{% block content %}
+    <table width="800" border="1" cellspacing="0">
+        <tr>
+            <th>id号</th>
+            <th>标题</th>
+            <th>图片</th>
+            <th>修改时间</th>
+            <th>操作</th>
+        </tr>
+            {% for i in alist %}
+            <tr>
+
+            <td>{{i.id}}</td>
+            <td> {{i.title}}</td>
+            <td> <a href="static/pics/{{i.name}}"><img src="static/pics/s_{{i.name}}"> </a></td>
+            <td>{{i.addtime |date:"Y-m-d H:m:s"}}</td>
+            <td align="center"><a href="{%url 'edit' i.id %}">Edit</a> /
+            <a href="{% url  'Delete' i.id%}">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+     </table>
+        {% for p in plist%}
+        {%if p == pIndex %}
+         <span  style="color: red">{{p}}</span>
+        {%else %}
+            <a href="{% url 'albums' p %}" style="red">{{p}}</a>
+        {%endif %}
+
+        {%endfor%}
+{% endblock %}
